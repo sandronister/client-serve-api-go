@@ -12,6 +12,7 @@ import (
 type IDatabase interface {
 	Close() error
 	PrepareContext(ctx context.Context, query string) (*sql.Stmt, error)
+	Prepare(query string) (*sql.Stmt, error)
 }
 
 func GetConnection() (*sql.DB, error) {
@@ -21,7 +22,7 @@ func GetConnection() (*sql.DB, error) {
 		return nil, errors.New("DSN not defined")
 	}
 
-	db, err := sql.Open("sqllite3", "./price.db")
+	db, err := sql.Open("sqlite3", DSN)
 
 	if err != nil {
 		return nil, err

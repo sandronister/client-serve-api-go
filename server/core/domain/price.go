@@ -1,6 +1,9 @@
 package domain
 
-import "net/http"
+import (
+	"context"
+	"net/http"
+)
 
 type usResult struct {
 	Code       string `json:"code"`
@@ -21,12 +24,12 @@ type Price struct {
 }
 
 type PriceUseCase interface {
-	Get() (Price, error)
-	Save(price Price) error
+	Get() (*Price, error)
+	Insert(price Price) error
 }
 
 type PriceRepository interface {
-	Save(price Price) error
+	Insert(ctx context.Context, price Price) error
 }
 
 type PriceService interface {

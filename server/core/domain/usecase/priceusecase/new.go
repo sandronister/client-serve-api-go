@@ -6,7 +6,7 @@ type usecase struct {
 	repository domain.PriceRepository
 }
 
-func New(repository domain.PriceRepository) *usecase {
+func New(repository domain.PriceRepository) domain.PriceUseCase {
 	return &usecase{
 		repository: repository,
 	}

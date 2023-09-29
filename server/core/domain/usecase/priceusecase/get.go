@@ -12,7 +12,9 @@ import (
 	"sandroni.fullcycle.server/core/domain"
 )
 
-func getRequest() (*http.Request, error) {
+func (u *usecase) Get() (*domain.Price, error) {
+	result := domain.Price{}
+
 	url := env.Get("URL", "FAIL")
 
 	if url == "FAIL" {
@@ -28,24 +30,13 @@ func getRequest() (*http.Request, error) {
 		return nil, err
 	}
 
-	return req, nil
-}
-
-func Get() (*domain.Price, error) {
-	result := domain.Price{}
-	req, err := getRequest()
-
-	if err != nil {
-		return nil, err
-	}
-
 	res, err := http.DefaultClient.Do(req)
 
 	if err != nil {
 		return nil, err
 	}
 
-	body, err := io.ReadAll(req.Body)
+	body, err := io.ReadAll(res.Body)
 	if err != nil {
 		return nil, err
 	}
