@@ -1,7 +1,6 @@
 package priceservice
 
 import (
-	"encoding/json"
 	"log"
 	"net/http"
 )
@@ -18,11 +17,11 @@ func (service *service) Get(response http.ResponseWriter, request *http.Request)
 		service.sendError(response, err)
 		return
 	}
-	err = service.usecase.Insert(*currentQuote)
+	err = service.usecase.Insert(currentQuote)
 	if err != nil {
 		service.sendError(response, err)
 		return
 	}
 
-	json.NewEncoder(response).Encode(currentQuote)
+	response.Write([]byte(currentQuote.Usdbrl.Bid))
 }

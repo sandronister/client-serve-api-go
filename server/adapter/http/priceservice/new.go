@@ -1,6 +1,6 @@
 package priceservice
 
-import "sandroni.fullcycle.server/core/domain"
+import "github.com/sandronister/client-serve-api-go/server/core/domain"
 
 type service struct {
 	usecase domain.PriceUseCase

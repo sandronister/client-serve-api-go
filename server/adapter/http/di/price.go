@@ -1,11 +1,11 @@
 package di
 
 import (
-	"sandroni.fullcycle.server/adapter/http/priceservice"
-	"sandroni.fullcycle.server/adapter/sqllite"
-	"sandroni.fullcycle.server/adapter/sqllite/pricerepository"
-	"sandroni.fullcycle.server/core/domain"
-	"sandroni.fullcycle.server/core/domain/usecase/priceusecase"
+	"github.com/sandronister/client-serve-api-go/server/adapter/http/priceservice"
+	"github.com/sandronister/client-serve-api-go/server/adapter/sqllite"
+	"github.com/sandronister/client-serve-api-go/server/adapter/sqllite/pricerepository"
+	"github.com/sandronister/client-serve-api-go/server/core/domain"
+	"github.com/sandronister/client-serve-api-go/server/core/domain/usecase/priceusecase"
 )
 
 func ConfigPriceDI(conn sqllite.IDatabase) domain.PriceService {
