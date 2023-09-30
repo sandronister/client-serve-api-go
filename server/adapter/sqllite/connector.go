@@ -15,18 +15,18 @@ type IDatabase interface {
 	Prepare(query string) (*sql.Stmt, error)
 }
 
-func GetConnection() (*sql.DB, error) {
+func GetConnection() *sql.DB {
 	DSN := env.Get("DSN", "FAIL")
 
 	if DSN == "FAIL" {
-		return nil, errors.New("DSN not defined")
+		panic(errors.New("DSN not defined"))
 	}
 
 	db, err := sql.Open("sqlite3", DSN)
 
 	if err != nil {
-		return nil, err
+		panic(err)
 	}
 
-	return db, nil
+	return db
 }

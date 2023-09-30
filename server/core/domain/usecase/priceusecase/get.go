@@ -23,7 +23,6 @@ func (u *usecase) Get() (*domain.Price, error) {
 
 	ctx, cancel := context.WithTimeout(context.Background(), 200*time.Millisecond)
 	defer cancel()
-
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 
 	if err != nil {

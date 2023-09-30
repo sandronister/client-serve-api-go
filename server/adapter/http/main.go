@@ -1,9 +1,10 @@
 package main
 
 import (
-	"fmt"
+	"net/http"
 
 	"github.com/gofor-little/env"
+	"github.com/gorilla/mux"
 	"sandroni.fullcycle.server/adapter/http/di"
 	"sandroni.fullcycle.server/adapter/sqllite"
 )
@@ -16,21 +17,15 @@ func init() {
 }
 
 func main() {
-	conn, err := sqllite.GetConnection()
-	if err != nil {
-		panic(err)
-	}
+	conn := sqllite.GetConnection()
 	priceUseCase := di.ConfigPriceDI(conn)
+	defer conn.Close()
+	router := mux.NewRouter()
+	router.HandleFunc("/", priceUseCase.Get).Methods("GET")
 
-	result, err := priceUseCase.Get()
+	err := http.ListenAndServe(":8080", router)
 	if err != nil {
 		panic(err)
 	}
-	err = priceUseCase.Insert(*result)
 
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println("Salvo com sucesso")
 }
