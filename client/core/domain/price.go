@@ -8,11 +8,11 @@ type Price struct {
 }
 
 type PriceUseCase interface {
-	GetQuote(ctx context.Context) ([]byte, error)
+	GetQuote(ctx context.Context) (string, error)
 }
 
 type PriceRepository interface {
-	Insert(filename string, content []byte) error
+	Insert(filename, content string) error
 }
 
 type PriceService interface {
