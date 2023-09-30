@@ -20,7 +20,8 @@ func appendFile(filename string, body []byte) error {
 	if err != nil {
 		return err
 	}
-	content := fmt.Sprintf("Data: %v - Cotacao: %v \n", time.Now(), string(body))
+	current := time.Now()
+	content := fmt.Sprintf("Data: %v - Cotacao: %v \n", current.Format("07-09-2006 15:06"), string(body))
 	data = append(data, []byte(content)...)
 
 	file, err := os.OpenFile(filename, os.O_RDWR, 0644)
