@@ -1,6 +1,6 @@
 package priceusecase
 
-import "sandroni.fullcycle.server/core/domain"
+import "github.com/sandronister/client-serve-api-go/server/core/domain"
 
 type usecase struct {
 	repository domain.PriceRepository

@@ -1,8 +1,8 @@
 package pricerepository
 
 import (
-	"sandroni.fullcycle.server/adapter/sqllite"
-	"sandroni.fullcycle.server/core/domain"
+	"github.com/sandronister/client-serve-api-go/server/adapter/sqllite"
+	"github.com/sandronister/client-serve-api-go/server/core/domain"
 )
 
 type repository struct {

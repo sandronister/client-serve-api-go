@@ -3,27 +3,19 @@ package priceusecase
 import (
 	"context"
 	"encoding/json"
-	"errors"
 	"io"
 	"net/http"
 	"time"
 
-	"github.com/gofor-little/env"
-	"sandroni.fullcycle.server/core/domain"
+	"github.com/sandronister/client-serve-api-go/server/core/domain"
 )
 
 func (u *usecase) Get() (*domain.Price, error) {
 	result := domain.Price{}
 
-	url := env.Get("URL", "FAIL")
-
-	if url == "FAIL" {
-		return nil, errors.New("URL does not defined")
-	}
-
 	ctx, cancel := context.WithTimeout(context.Background(), 200*time.Millisecond)
 	defer cancel()
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	req, err := http.NewRequestWithContext(ctx, "GET", "https://economia.awesomeapi.com.br/json/last/USD-BRL", nil)
 
 	if err != nil {
 		return nil, err

@@ -25,11 +25,11 @@ type Price struct {
 
 type PriceUseCase interface {
 	Get() (*Price, error)
-	Insert(price Price) error
+	Insert(price *Price) error
 }
 
 type PriceRepository interface {
-	Insert(ctx context.Context, price Price) error
+	Insert(ctx context.Context, price *Price) error
 }
 
 type PriceService interface {
