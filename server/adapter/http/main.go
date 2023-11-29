@@ -10,10 +10,10 @@ import (
 
 func main() {
 	conn := sqllite.GetConnection()
-	priceUseCase := di.ConfigPriceDI(conn)
+	priceService := di.ConfigPriceDI(conn)
 	defer conn.Close()
 	router := mux.NewRouter()
-	router.HandleFunc("/cotacao", priceUseCase.Get).Methods("GET")
+	router.HandleFunc("/cotacao", priceService.Get).Methods("GET")
 
 	err := http.ListenAndServe(":8080", router)
 	if err != nil {
